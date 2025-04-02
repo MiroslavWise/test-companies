@@ -3,3 +3,9 @@ export enum ELinkManager {
   CONTRACTORS = "contractors",
   CLIENTS = "clients",
 }
+
+export enum EIsAuth {
+  CHECK = "check",
+  AUTHORIZED = "authorized",
+  UNAUTHORIZED = "unauthorized",
+}

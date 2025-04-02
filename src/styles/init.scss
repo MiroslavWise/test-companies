@@ -35,3 +35,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.shadow-primary-button {
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.12));
+}
