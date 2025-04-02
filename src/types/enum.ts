@@ -9,3 +9,9 @@ export enum EIsAuth {
   AUTHORIZED = "authorized",
   UNAUTHORIZED = "unauthorized",
 }
+
+export enum EBusinessEntity {
+  Partnership = "Partnership",
+  Sole_Proprietorship = "Sole Proprietorship",
+  Limited_Liability_Company = "Limited Liability Company",
+}

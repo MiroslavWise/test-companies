@@ -1,5 +1,7 @@
-import { instance } from "../instance"
 import { z } from "zod"
+
+import { instance } from "../instance"
+import { EBusinessEntity } from "../../types/enum"
 
 const route = `/companies`
 
@@ -10,12 +12,12 @@ export interface IPhoto {
   createdAt: string
 }
 
-interface ICompany {
+export interface ICompany {
   id: number | string
   contactId: string
   name: string
   shortName: string
-  businessEntity: string
+  businessEntity: EBusinessEntity
   contract: {
     no: string
     issue_date: string
@@ -29,6 +31,7 @@ interface ICompany {
 
 const schemaBody = z.object({
   name: z.string().default(""),
+  businessEntity: z.nativeEnum(EBusinessEntity),
 })
 
 export type TPostBodyCompany = z.infer<typeof schemaBody>
