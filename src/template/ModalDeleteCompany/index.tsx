@@ -1,34 +1,34 @@
 import { cx } from "../../utils/cx"
-import { deletePhotoCompany } from "../../services/companies"
-import { dispatchDeletePhoto, useDeletePhoto } from "../../store/useDeletePhoto"
+import { deleteCompany } from "../../services/companies"
+import { dispatchDeleteCompany, useDeleteCompany } from "../../store/useDeleteCompany"
 
-function ModalDeletePhoto() {
-  const photo = useDeletePhoto(({ photo }) => photo)
+function ModalDeleteCompany() {
+  const id = useDeleteCompany(({ companyId }) => companyId)
 
   function close() {
-    dispatchDeletePhoto()
+    dispatchDeleteCompany()
   }
 
   async function handleOk() {
-    if (photo) {
-      await deletePhotoCompany(photo.companyId, photo.name)
+    if (id) {
+      await deleteCompany(id)
       close()
     }
   }
 
-  if (!photo) return null
+  if (!id) return null
 
   return (
     <div
       className={cx(
         "fixed bg-black/50 inset-0 w-full h-full transition-all flex items-center justify-center",
-        photo ? "visible pointer-events-auto opacity-100" : "invisible pointer-events-none opacity-0",
+        id ? "visible pointer-events-auto opacity-100" : "invisible pointer-events-none opacity-0",
       )}
     >
       <section className="w-full bg-[#FFFFFF] p-6 gap-6 flex flex-col items-center max-w-[22.5rem] rounded-lg">
         <article className="w-full flex flex-col gap-3 items-center text-[#000000CC]">
-          <h2 className="text-sm font-semibold leading-6">Remove the Photo?</h2>
-          <p className="text-[13px] leading-5 font-normal">Are you sure you want to remove this Photo?</p>
+          <h2 className="text-sm font-semibold leading-6">Remove the Organization?</h2>
+          <p className="text-[13px] leading-5 font-normal">Are you sure you want to remove this Organization?</p>
         </article>
         <footer className="w-full grid grid-cols-2 gap-4">
           <button
@@ -51,5 +51,5 @@ function ModalDeletePhoto() {
   )
 }
 
-ModalDeletePhoto.displayName = "ModalDeletePhoto"
-export default ModalDeletePhoto
+ModalDeleteCompany.displayName = "ModalDeleteCompany"
+export default ModalDeleteCompany

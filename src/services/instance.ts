@@ -4,7 +4,7 @@ import { useAuth } from "../store/useAuth"
 interface IPropInst {
   route: string
   /** @default GET */
-  method?: "GET" | "POST" | "PUT" | "DELETE"
+  method?: "GET" | "POST" | "PATCH" | "DELETE"
   query?: any
   body?: object
 }
@@ -44,7 +44,7 @@ export const instance = async <R = any>({ route, method = "GET", body }: IPropIn
       headers: header(),
     }
 
-    if (method && ["POST", "PUT"].includes(method) && body) {
+    if (method && ["POST", "PATCH"].includes(method) && body) {
       obj.body = JSON.stringify(body)
     }
 

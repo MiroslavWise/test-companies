@@ -2,11 +2,11 @@ import { format } from "date-fns"
 import { useQuery } from "@tanstack/react-query"
 
 import ItemWrapper from "../../ItemWrapper"
+import ButtonEdit from "../../buttons/ButtonEdit"
 
 import { ID_COMPANY } from "../../../mocks/id"
 import { useAuth } from "../../../store/useAuth"
 import { getCompanyId } from "../../../services/companies"
-
 
 function updateType(type: string[]): string {
   const newArray: string[] = []
@@ -37,6 +37,8 @@ function ItemOrganization() {
     enabled: !!token,
   })
 
+  function onEdit() {}
+
   const { businessEntity = null, type = [], contract } = data?.data ?? {}
 
   const { no = "", issue_date = null } = contract ?? {}
@@ -48,6 +50,7 @@ function ItemOrganization() {
     <ItemWrapper>
       <div className="w-full flex flex-row items-center justify-between">
         <h2 className="font-bold text-sm">Company Details</h2>
+        <ButtonEdit onClick={onEdit} />
       </div>
       <div className="w-full flex flex-col gap-0.5 font-normal *:h-8">
         <div className="w-full grid grid-cols-[10rem_minmax(0,1fr)] gap-3 items-center">

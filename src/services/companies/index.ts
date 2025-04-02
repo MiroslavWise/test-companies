@@ -1,4 +1,5 @@
 import { instance } from "../instance"
+import { z } from "zod"
 
 const route = `/companies`
 
@@ -26,6 +27,16 @@ interface ICompany {
   updatedAt: string
 }
 
-export const getCompanyId = (id: number) => instance<ICompany>({ route: `${route}/${id}` })
-export const deletePhotoCompany = (id: number | string, name: string) =>
-  instance({ route: `${route}/${id}/image/${name}`, method: "DELETE" })
+const schemaBody = z.object({
+  name: z.string().default(""),
+})
+
+export type TPostBodyCompany = z.infer<typeof schemaBody>
+export type TPatchBodyCompany = Partial<TPostBodyCompany>
+
+type TStringNumber = number | string
+
+export const getCompanyId = (id: TStringNumber) => instance<ICompany>({ route: `${route}/${id}` })
+export const deletePhotoCompany = (id: TStringNumber, name: string) => instance({ route: `${route}/${id}/image/${name}`, method: "DELETE" })
+export const deleteCompany = (id: TStringNumber) => instance({ route: `${route}/${id}`, method: "DELETE" })
+export const patchCompany = (id: TStringNumber, body: TPatchBodyCompany) => instance({ route: `${route}/${id}`, method: "PATCH", body })
